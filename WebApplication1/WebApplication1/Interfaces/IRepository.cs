@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Interfaces
 {
-    interface IRepository<T> : IDisposable
-         where T : class
+    interface IRepository<T> where T : class
     {
         void Create(T item);
-        void Read(int id);
+        IQueryable<T> Read();
         void Update(T item);
-        void Delete(int id); //T item
-        IQueryable<T> GetAll(); 
+        void Delete(T item); 
     }
 }

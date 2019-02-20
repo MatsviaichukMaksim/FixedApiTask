@@ -1,5 +1,6 @@
 ﻿using ConsoleAppForDb;
 using ConsoleAppForDb.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,40 +19,27 @@ namespace WebApplication1.Repositories
         }
         public void Create(User user)
         {
-            _userDbContext.Set<User>().Add(user);
-            //_userDbContext.Users.Add(user);
+            //_userDbContext.Set<User>().Add(user);
+            _userDbContext.Users.Add(user);
+            _userDbContext.SaveChanges();
         }
-
-        public void Delete(int id) //User user
+        public IQueryable<User> Read()
         {
-            //_userDbContext.Set<User>().;
-            var user = _userDbContext.Users.Find(id);
-            if (user != null)
-            {
-               // _userDbContext.Users.Remove(user); // can leave just this string
-                _userDbContext.Set<User>().Remove(user);
-            }
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<User> GetAll() 
-        {
-            //do nothing
             return _userDbContext.Users;//.ToList().AsQueryable();
-        }
-
-        public void Read(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(User user)
         {
-            throw new NotImplementedException();
+            _userDbContext.Entry(user).State = EntityState.Modified;
+            _userDbContext.SaveChanges();
         }
+        public void Delete(User user) //User user
+        {
+         // var user = _userDbContext.Users.Find(id);
+            _userDbContext.Users.Remove(user); // can leave just this string
+         //_userDbContext.Set<User>().Remove(user);
+            _userDbContext.SaveChanges();
+        }
+
     }
 }
