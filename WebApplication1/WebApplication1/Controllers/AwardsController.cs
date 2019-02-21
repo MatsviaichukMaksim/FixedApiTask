@@ -13,12 +13,18 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class AwardsController : ControllerBase
     {
-        private IRepository<Award> repository;
+        private IRepository<Award> _repository;
         public AwardsController()
         {
-            repository = new AwardRepository();
+            _repository = new AwardRepository();
             //repository = new Repository<Award>();
         }
+
+        //private AwardsController(IRepository<Award> repo) 
+        //{
+        //    _repository = repo;
+        //}
+
         //POST api/awards
         [HttpPost]
         public ActionResult<Award> Post([FromBody] Award award)
@@ -27,15 +33,15 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            repository.Create(award);
+            _repository.Create(award);
             return Ok();
         }
         //GET /api/users/{id}/recipientawards
         [Route("/api/users/{id}/recipientawards")]
         //[HttpGet("{id}/recipientawards")]
-        public ActionResult<IEnumerable<Award>> GetRecipientAwardsById(int id)
+        public ActionResult<IEnumerable<Award>> GetRecipientAwards(int id)
         {
-            var award = repository.Read().Where(a => a.GetterId == id).ToList();
+            var award = _repository.Read().Where(a => a.GetterId == id).ToList();
             if (award !=null)
             {
                 return award;
@@ -45,9 +51,9 @@ namespace WebApplication1.Controllers
         //GET /api/users/{id}/recipientawards
         [Route("/api/users/{id}/giverawards")]
         //[HttpGet("{id}/userbyid")]
-        public ActionResult<IEnumerable<Award>> GetGiverAwardsById(int id)
+        public ActionResult<IEnumerable<Award>> GetGiverAwards(int id)
         {
-            var award = repository.Read().Where(a => a.GiverId == id).ToList();
+            var award = _repository.Read().Where(a => a.GiverId == id).ToList();
             if (award != null)
             {
                 return award;
@@ -58,12 +64,12 @@ namespace WebApplication1.Controllers
         [HttpDelete("{id}")]
         public ActionResult<Award> Delete(int id)
         {
-            var award = repository.Read().FirstOrDefault(u => u.Id == id);
+            var award = _repository.Read().FirstOrDefault(u => u.Id == id);
             if (award == null)
             {
                 return NotFound();
             }
-            repository.Delete(award);
+            _repository.Delete(award);
             return Ok();
         }
 

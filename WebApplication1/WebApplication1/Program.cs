@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using WebApplication1.Controllers;
+using WebApplication1.Repositories;
 
 namespace WebApplication1
 {
@@ -15,6 +17,7 @@ namespace WebApplication1
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+            //var comment = new CommentsController(CommentRepository);
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

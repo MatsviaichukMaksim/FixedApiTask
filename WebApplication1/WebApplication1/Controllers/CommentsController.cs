@@ -11,14 +11,20 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : ControllerBase
+    public class CommentsController : ControllerBase
     {
-        private IRepository<Comment> repository;
-        public CommentController()
+        private IRepository<Comment> _repository;
+        public CommentsController()
         {
-            repository = new CommentRepository();
+            _repository = new CommentRepository();
             //repository = new Repository<Comment>();
         }
+
+        //private CommentsController(IRepository<Comment> repo)
+        //{
+        //    _repository = repo;
+        //}
+
         //POST api/comments
         [HttpPost]
         public ActionResult<Comment> Post([FromBody] Comment comment)
@@ -27,7 +33,7 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            repository.Create(comment);
+            _repository.Create(comment);
             return Ok();
         }
 
@@ -35,7 +41,7 @@ namespace WebApplication1.Controllers
         [HttpPut("{id}")]
         public ActionResult<Comment> Put(int id, [FromBody] Comment commentData)
         {
-            var comment = repository.Read().FirstOrDefault(u => u.Id == id); 
+            var comment = _repository.Read().FirstOrDefault(u => u.Id == id); 
             if (comment == null)
             {
                 return NotFound();
@@ -44,7 +50,7 @@ namespace WebApplication1.Controllers
             comment.AwardId = commentData.AwardId;
             comment.UserId = commentData.UserId;
             comment.Date = commentData.Date;
-            repository.Update(comment);
+            _repository.Update(comment);
             return Ok();
         }
 
@@ -52,18 +58,18 @@ namespace WebApplication1.Controllers
         [HttpDelete("{id}")]
         public ActionResult<Comment> Delete(int id)
         {
-            var comment = repository.Read().FirstOrDefault(u => u.Id == id);
+            var comment = _repository.Read().FirstOrDefault(u => u.Id == id);
             if (comment == null)
             {
                 return NotFound();
             }
-            repository.Delete(comment);
+            _repository.Delete(comment);
             return Ok();
         }
         [Route("/api/awards/{id}/comments")]
-        public ActionResult<IEnumerable<Comment>> GetCommentsForAwardById(int id)
+        public ActionResult<IEnumerable<Comment>> GetCommentsForAward(int id)
         {
-            var comment = repository.Read().Where(a => a.AwardId == id).ToList();
+            var comment = _repository.Read().Where(a => a.AwardId == id).ToList();
             if (comment != null)
             {
                 return comment;

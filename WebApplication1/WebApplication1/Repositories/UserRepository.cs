@@ -17,6 +17,7 @@ namespace WebApplication1.Repositories
         {
             this._userDbContext = new UserDbContext();
         }
+
         public void Create(User user)
         {
             //_userDbContext.Set<User>().Add(user);
@@ -25,7 +26,7 @@ namespace WebApplication1.Repositories
         }
         public IQueryable<User> Read()
         {
-            return _userDbContext.Users;//.ToList().AsQueryable();
+            return _userDbContext.Users;
         }
 
         public void Update(User user)

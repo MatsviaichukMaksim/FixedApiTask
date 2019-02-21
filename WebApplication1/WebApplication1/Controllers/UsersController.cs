@@ -13,12 +13,18 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IRepository<User> repository;
+        private IRepository<User> _repository;
         public UsersController()
         {
-            //repository = new UserRepository();
-            repository = new Repository<User>();
+            _repository = new UserRepository();
+            //repository = new Repository<User>();
         }
+
+        //private UsersController(IRepository<User> repo)
+        //{
+        //    _repository = repo;
+        //}
+
         //POST api/users
         [HttpPost]
         public ActionResult<User> Post([FromBody] User user)
@@ -27,7 +33,7 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            repository.Create(user);
+            _repository.Create(user);
             return Ok();
         }
         // PUT api/users/{Id} 
@@ -35,7 +41,7 @@ namespace WebApplication1.Controllers
         public ActionResult<User> Put(int id, [FromBody] User userData)
         {
             //var user = GetById(id);
-            var user = repository.Read().FirstOrDefault(u => u.Id == id); //repeat
+            var user = _repository.Read().FirstOrDefault(u => u.Id == id); //repeat
             if (user == null)
             {
                 return NotFound();
@@ -44,7 +50,7 @@ namespace WebApplication1.Controllers
             user.LastName = userData.LastName;
             user.Email = userData.Email;
             user.Phone = userData.Phone;
-            repository.Update(user);
+            _repository.Update(user);
             return Ok();
 
             //_userDbContext.Save();
@@ -53,13 +59,13 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> Get()
         {
-             return repository.Read().ToList();
+             return _repository.Read().ToList();
         }
         //GET api/users/{Id}/userbyid
         [HttpGet("{id}/userbyid")]
         public ActionResult<User> GetById(int id)
         {
-            var user = repository.Read().FirstOrDefault(u=>u.Id==id);
+            var user = _repository.Read().FirstOrDefault(u=>u.Id==id);
             if (user != null)
             {
                 return user;
@@ -70,7 +76,7 @@ namespace WebApplication1.Controllers
         [HttpGet("{Email}/userbyemail")]
         public ActionResult<User> GetByEmail(string email)
         {
-            var user = repository.Read().FirstOrDefault(u => u.Email == email);
+            var user = _repository.Read().FirstOrDefault(u => u.Email == email);
             if(user!=null)
             {
                 return user;
@@ -88,12 +94,12 @@ namespace WebApplication1.Controllers
             //repository.Delete(id);
             //return Ok();
             //var user = GetById(id);
-            var user = repository.Read().FirstOrDefault(u => u.Id == id);
+            var user = _repository.Read().FirstOrDefault(u => u.Id == id);
             if (user==null)
             {
                 return NotFound();
             }
-            repository.Delete(user);
+            _repository.Delete(user);
             return Ok();
         }
         //GET /api/users/{id}/recipientawards
