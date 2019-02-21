@@ -13,9 +13,9 @@ namespace WebApplication1.Repositories
     {
         private UserDbContext _userDbContext;
 
-        public Repository()
+        public Repository(UserDbContext userDbContext)
         {
-            this._userDbContext = new UserDbContext();
+            _userDbContext = userDbContext;
         }
         public void Create(T item)
         {

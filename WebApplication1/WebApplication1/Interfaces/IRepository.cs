@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Interfaces
 {
-    interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         void Create(T item);
         IQueryable<T> Read();

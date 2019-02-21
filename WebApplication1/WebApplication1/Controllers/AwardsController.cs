@@ -14,20 +14,15 @@ namespace WebApplication1.Controllers
     public class AwardsController : ControllerBase
     {
         private IRepository<Award> _repository;
-        public AwardsController()
-        {
-            _repository = new AwardRepository();
-            //repository = new Repository<Award>();
-        }
 
-        //private AwardsController(IRepository<Award> repo) 
-        //{
-        //    _repository = repo;
-        //}
+        public AwardsController(IRepository<Award> repository)
+        {
+            _repository = repository;
+        }
 
         //POST api/awards
         [HttpPost]
-        public ActionResult<Award> Post([FromBody] Award award)
+        public ActionResult Post([FromBody] Award award)
         {
             if (award == null)
             {
@@ -38,31 +33,30 @@ namespace WebApplication1.Controllers
         }
         //GET /api/users/{id}/recipientawards
         [Route("/api/users/{id}/recipientawards")]
-        //[HttpGet("{id}/recipientawards")]
         public ActionResult<IEnumerable<Award>> GetRecipientAwards(int id)
         {
             var award = _repository.Read().Where(a => a.GetterId == id).ToList();
-            if (award !=null)
+            if (award ==null)
             {
-                return award;
+                return NotFound();
             }
-            return NotFound();
+            return award;
         }
+
         //GET /api/users/{id}/recipientawards
         [Route("/api/users/{id}/giverawards")]
-        //[HttpGet("{id}/userbyid")]
         public ActionResult<IEnumerable<Award>> GetGiverAwards(int id)
         {
             var award = _repository.Read().Where(a => a.GiverId == id).ToList();
-            if (award != null)
+            if (award == null)
             {
-                return award;
+                return NotFound();
             }
-            return NotFound();
+            return award;
         }
         //DELETE api/awards/{Id} 
         [HttpDelete("{id}")]
-        public ActionResult<Award> Delete(int id)
+        public ActionResult Delete(int id)
         {
             var award = _repository.Read().FirstOrDefault(u => u.Id == id);
             if (award == null)

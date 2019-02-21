@@ -14,20 +14,15 @@ namespace WebApplication1.Controllers
     public class CommentsController : ControllerBase
     {
         private IRepository<Comment> _repository;
-        public CommentsController()
-        {
-            _repository = new CommentRepository();
-            //repository = new Repository<Comment>();
-        }
 
-        //private CommentsController(IRepository<Comment> repo)
-        //{
-        //    _repository = repo;
-        //}
+        public CommentsController(IRepository<Comment> repository)
+        {
+            _repository = repository;
+        }
 
         //POST api/comments
         [HttpPost]
-        public ActionResult<Comment> Post([FromBody] Comment comment)
+        public ActionResult Post([FromBody] Comment comment)
         {
             if (comment == null)
             {
@@ -39,7 +34,7 @@ namespace WebApplication1.Controllers
 
         // PUT api/comments/{Id} 
         [HttpPut("{id}")]
-        public ActionResult<Comment> Put(int id, [FromBody] Comment commentData)
+        public ActionResult Put(int id, [FromBody] Comment commentData)
         {
             var comment = _repository.Read().FirstOrDefault(u => u.Id == id); 
             if (comment == null)
@@ -56,7 +51,7 @@ namespace WebApplication1.Controllers
 
         //DELETE api/comments/{Id} 
         [HttpDelete("{id}")]
-        public ActionResult<Comment> Delete(int id)
+        public ActionResult Delete(int id)
         {
             var comment = _repository.Read().FirstOrDefault(u => u.Id == id);
             if (comment == null)

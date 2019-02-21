@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsoleAppForDb;
 using ConsoleAppForDb.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,16 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<UserDbContext>();
             //services.AddScoped<IRepository<User>,UserRepository>();
+            //services.AddScoped<IRepository<Award>, AwardRepository>();
+            //services.AddScoped<IRepository<Comment>, CommentRepository>();
+            //services.AddScoped<IRepository<Like>, LikeRepository>();
+            services.AddScoped<IRepository<User>, Repository<User>>();
+            services.AddScoped<IRepository<Award>, Repository<Award>>();
+            services.AddScoped<IRepository<Comment>, Repository<Comment>>();
+            services.AddScoped<IRepository<Like>, Repository<Like>>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

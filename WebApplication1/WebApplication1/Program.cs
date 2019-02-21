@@ -17,7 +17,6 @@ namespace WebApplication1
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
-            //var comment = new CommentsController(CommentRepository);
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

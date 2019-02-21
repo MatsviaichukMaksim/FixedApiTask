@@ -14,20 +14,20 @@ namespace WebApplication1.Controllers
     public class UsersController : ControllerBase
     {
         private IRepository<User> _repository;
-        public UsersController()
-        {
-            _repository = new UserRepository();
-            //repository = new Repository<User>();
-        }
-
-        //private UsersController(IRepository<User> repo)
+        //public UsersController()
         //{
-        //    _repository = repo;
+        //    _repository = new UserRepository();
+        //    repository = new Repository<User>();
         //}
+
+        public UsersController(IRepository<User> repository)
+        {
+            _repository = repository;
+        }
 
         //POST api/users
         [HttpPost]
-        public ActionResult<User> Post([FromBody] User user)
+        public ActionResult Post([FromBody] User user)
         {
             if (user == null)
             {
@@ -38,10 +38,9 @@ namespace WebApplication1.Controllers
         }
         // PUT api/users/{Id} 
         [HttpPut("{id}")]
-        public ActionResult<User> Put(int id, [FromBody] User userData)
+        public ActionResult Put(int id, [FromBody] User userData)
         {
-            //var user = GetById(id);
-            var user = _repository.Read().FirstOrDefault(u => u.Id == id); //repeat
+            var user = _repository.Read().FirstOrDefault(u => u.Id == id); 
             if (user == null)
             {
                 return NotFound();
@@ -52,48 +51,41 @@ namespace WebApplication1.Controllers
             user.Phone = userData.Phone;
             _repository.Update(user);
             return Ok();
-
-            //_userDbContext.Save();
         }
+
         //GET api/users
         [HttpGet]
         public ActionResult<IEnumerable<User>> Get()
         {
              return _repository.Read().ToList();
         }
+
         //GET api/users/{Id}/userbyid
         [HttpGet("{id}/userbyid")]
         public ActionResult<User> GetById(int id)
         {
             var user = _repository.Read().FirstOrDefault(u=>u.Id==id);
-            if (user != null)
+            if (user == null)
             {
-                return user;
+                return NotFound();
             }
-            return NotFound();
+            return user;
         }
         //GET api/users/{Email}/userbyemail
         [HttpGet("{Email}/userbyemail")]
         public ActionResult<User> GetByEmail(string email)
         {
             var user = _repository.Read().FirstOrDefault(u => u.Email == email);
-            if(user!=null)
+            if (user == null)
             {
-                return user;
+                return NotFound();
             }
-            return NotFound();
+            return user;
         }
         //DELETE api/users/{Id} 
         [HttpDelete("{id}")]
-        public ActionResult<User> Delete(int id) // ActionResult<User> //repeat
+        public ActionResult Delete(int id) 
         {
-            //if (id != user.Id)
-            //{
-            //    return NotFound();
-            //}
-            //repository.Delete(id);
-            //return Ok();
-            //var user = GetById(id);
             var user = _repository.Read().FirstOrDefault(u => u.Id == id);
             if (user==null)
             {
@@ -102,12 +94,5 @@ namespace WebApplication1.Controllers
             _repository.Delete(user);
             return Ok();
         }
-        //GET /api/users/{id}/recipientawards
-        //[Route("/api/users/{id}/giverawards")]
-        //[HttpGet("{id}/giverawards")]
-        //public ActionResult<IEnumerable<Award>> GetGiverAwardsById(int id)
-        //{
-        //    var award = repository.Awards.Where(a => a.AgiverId == id).ToList();
-        //}
     }
 }

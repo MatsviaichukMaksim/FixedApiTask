@@ -14,20 +14,15 @@ namespace WebApplication1.Controllers
     public class LikesController : ControllerBase
     {
         private IRepository<Like> _repository;
-        public LikesController()
-        {
-            _repository = new LikeRepository();
-            //repository = new Repository<Like>();
-        }
 
-        //private LikesController(IRepository<Like> repo) 
-        //{
-        //    _repository = repo;
-        //}
+        public LikesController(IRepository<Like> repository)
+        {
+            _repository = repository;
+        }
 
         //POST api/likes
         [HttpPost]
-        public ActionResult<Like> Post([FromBody] Like like)
+        public ActionResult Post([FromBody] Like like)
         {
             if (like == null)
             {
@@ -38,7 +33,7 @@ namespace WebApplication1.Controllers
         }
         //DELETE api/likes/{Id} 
         [HttpDelete("{id}")]
-        public ActionResult<Like> Delete(int id)
+        public ActionResult Delete(int id)
         {
             var like = _repository.Read().FirstOrDefault(u => u.Id == id);
             if (like == null)
