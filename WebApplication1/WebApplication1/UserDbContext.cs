@@ -18,7 +18,7 @@ namespace ConsoleAppForDb
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=UserDbNew;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=UsersDb;Trusted_Connection=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

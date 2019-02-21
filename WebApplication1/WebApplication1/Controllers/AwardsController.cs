@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
         public AwardsController()
         {
             repository = new AwardRepository();
+            //repository = new Repository<Award>();
         }
         //POST api/awards
         [HttpPost]

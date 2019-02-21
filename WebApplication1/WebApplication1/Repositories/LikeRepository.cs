@@ -1,6 +1,5 @@
 ﻿using ConsoleAppForDb;
 using ConsoleAppForDb.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,33 +8,32 @@ using WebApplication1.Interfaces;
 
 namespace WebApplication1.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class LikeRepository : IRepository<Like>
     {
         private UserDbContext _userDbContext;
 
-        public Repository()
+        public LikeRepository()
         {
             this._userDbContext = new UserDbContext();
         }
-        public void Create(T item)
+        public void Create(Like like)
         {
-            _userDbContext.Set<T>().Add(item);
+            _userDbContext.Likes.Add(like);
             _userDbContext.SaveChanges();
         }
 
-        public IQueryable<T> Read()
+        public IQueryable<Like> Read()
         {
-            return _userDbContext.Set<T>();
+            return _userDbContext.Likes;
         }
 
-        public void Update(T item)
+        public void Update(Like like)
         {
-            _userDbContext.Entry(item).State = EntityState.Modified;
-            _userDbContext.SaveChanges();
+            //do nothing
         }
-        public void Delete(T item)
+        public void Delete(Like like)
         {
-            _userDbContext.Set<T>().Remove(item);
+            _userDbContext.Likes.Remove(like);
             _userDbContext.SaveChanges();
         }
     }

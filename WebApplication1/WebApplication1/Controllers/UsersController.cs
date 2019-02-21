@@ -16,7 +16,8 @@ namespace WebApplication1.Controllers
         private IRepository<User> repository;
         public UsersController()
         {
-            repository = new UserRepository();
+            //repository = new UserRepository();
+            repository = new Repository<User>();
         }
         //POST api/users
         [HttpPost]

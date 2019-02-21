@@ -6,6 +6,7 @@ namespace ConsoleAppForDb.Models
 {
     public class Like
     {
+        public int Id { get; set; }
         public int AwardId { get; set; }
         public int UserId { get; set; }
         public Award Award { get; set; }

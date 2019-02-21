@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
         public CommentController()
         {
             repository = new CommentRepository();
+            //repository = new Repository<Comment>();
         }
         //POST api/comments
         [HttpPost]
