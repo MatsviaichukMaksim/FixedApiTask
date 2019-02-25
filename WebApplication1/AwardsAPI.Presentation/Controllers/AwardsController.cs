@@ -31,29 +31,29 @@ namespace WebApplication1.Controllers
             _repository.Create(award);
             return Ok();
         }
-        //GET /api/users/{id}/recipientawards
-        [Route("/api/users/{id}/recipientawards")]
-        public ActionResult<IEnumerable<Award>> GetRecipientAwards(int id)
-        {
-            var award = _repository.Read().Where(a => a.GetterId == id).ToList();
-            if (award ==null)
-            {
-                return NotFound();
-            }
-            return award;
-        }
+        ////GET /api/users/{id}/recipientawards
+        //[Route("/api/users/{id}/recipientawards")]
+        //public ActionResult<IEnumerable<Award>> GetRecipientAwards(int id)
+        //{
+        //    var award = _repository.Read().Where(a => a.GetterId == id).ToList();
+        //    if (award ==null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return award;
+        //}
 
-        //GET /api/users/{id}/recipientawards
-        [Route("/api/users/{id}/giverawards")]
-        public ActionResult<IEnumerable<Award>> GetGiverAwards(int id)
-        {
-            var award = _repository.Read().Where(a => a.GiverId == id).ToList();
-            if (award == null)
-            {
-                return NotFound();
-            }
-            return award;
-        }
+        ////GET /api/users/{id}/recipientawards
+        //[Route("/api/users/{id}/giverawards")]
+        //public ActionResult<IEnumerable<Award>> GetGiverAwards(int id)
+        //{
+        //    var award = _repository.Read().Where(a => a.GiverId == id).ToList();
+        //    if (award == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return award;
+        //}
         //DELETE api/awards/{Id} 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
