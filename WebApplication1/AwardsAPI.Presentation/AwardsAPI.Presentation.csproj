@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AwardsAPI.DAL\AwardsAPI.DAL.csproj" />
-    <ProjectReference Include="..\AwardsAPI.Models\AwardsAPI.Models.csproj" />
+    <ProjectReference Include="..\AwardsAPI.BusinessLogic\AwardsAPI.BusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>

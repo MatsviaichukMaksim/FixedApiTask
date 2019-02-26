@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AwardsAPI.BusinessLogic.Interfaces
 {
-    public interface ICommentService
+    public interface ICommentService :IService<Comment>
     {
-        IQueryable<Comment> GetCommentsForAward(int id);
+        List<Comment> GetCommentsForAward(int id);
     }
 }

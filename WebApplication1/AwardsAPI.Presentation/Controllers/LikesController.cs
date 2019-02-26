@@ -1,4 +1,5 @@
-﻿using ConsoleAppForDb.Models;
+﻿using AwardsAPI.BusinessLogic.Interfaces;
+using ConsoleAppForDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class LikesController : ControllerBase
     {
-        private IRepository<Like> _repository;
+        private ILikeService _service;
 
-        public LikesController(IRepository<Like> repository)
+        public LikesController(ILikeService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         //POST api/likes
@@ -28,20 +29,21 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            _repository.Create(like);
+            _service.Create(like);
             return Ok();
         }
         //DELETE api/likes/{Id} 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var like = _repository.Read().FirstOrDefault(u => u.Id == id);
-            if (like == null)
+            if (_service.Delete(id))
             {
-                return NotFound();
+                return Ok();
             }
-            _repository.Delete(like);
-            return Ok();
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

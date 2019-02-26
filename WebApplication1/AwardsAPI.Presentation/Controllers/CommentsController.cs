@@ -1,4 +1,5 @@
-﻿using ConsoleAppForDb.Models;
+﻿using AwardsAPI.BusinessLogic.Interfaces;
+using ConsoleAppForDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class CommentsController : ControllerBase
     {
-        private IRepository<Comment> _repository;
+        private ICommentService _service;
 
-        public CommentsController(IRepository<Comment> repository)
+        public CommentsController(ICommentService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         //POST api/comments
@@ -28,48 +29,46 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            _repository.Create(comment);
+            _service.Create(comment);
             return Ok();
         }
 
         // PUT api/comments/{Id} 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Comment commentData)
+        public ActionResult Put(int id, [FromBody] Comment comment)
         {
-            var comment = _repository.Read().FirstOrDefault(u => u.Id == id); 
-            if (comment == null)
+            if (_service.Update(comment, id))
             {
-                return NotFound();
+                return Ok();
             }
-            comment.Text = commentData.Text;
-            comment.AwardId = commentData.AwardId;
-            comment.UserId = commentData.UserId;
-            comment.Date = commentData.Date;
-            _repository.Update(comment);
-            return Ok();
+            else
+            {
+                return BadRequest();
+            }
         }
 
         //DELETE api/comments/{Id} 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var comment = _repository.Read().FirstOrDefault(u => u.Id == id);
-            if (comment == null)
+            if (_service.Delete(id))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        [Route("/api/awards/{id}/comments")]
+        public ActionResult<IEnumerable<Comment>> GetCommentsForAward(int id)
+        {
+            var comments = _service.GetCommentsForAward(id);
+            if (comments == null)
             {
                 return NotFound();
             }
-            _repository.Delete(comment);
-            return Ok();
+            return Ok(comments);
         }
-        //[Route("/api/awards/{id}/comments")]
-        //public ActionResult<IEnumerable<Comment>> GetCommentsForAward(int id)
-        //{
-        //    var comment = _repository.Read().Where(a => a.AwardId == id).ToList();
-        //    if (comment != null)
-        //    {
-        //        return comment;
-        //    }
-        //    return NotFound();
-        //}
     }
 }

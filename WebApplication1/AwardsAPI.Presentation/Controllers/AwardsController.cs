@@ -1,4 +1,5 @@
-﻿using ConsoleAppForDb.Models;
+﻿using AwardsAPI.BusinessLogic.Interfaces;
+using ConsoleAppForDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class AwardsController : ControllerBase
     {
-        private IRepository<Award> _repository;
+        private IAwardService _service;
 
-        public AwardsController(IRepository<Award> repository)
+        public AwardsController(IAwardService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         //POST api/awards
@@ -28,43 +29,44 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            _repository.Create(award);
+            _service.Create(award);
             return Ok();
         }
-        ////GET /api/users/{id}/recipientawards
-        //[Route("/api/users/{id}/recipientawards")]
-        //public ActionResult<IEnumerable<Award>> GetRecipientAwards(int id)
-        //{
-        //    var award = _repository.Read().Where(a => a.GetterId == id).ToList();
-        //    if (award ==null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return award;
-        //}
-
-        ////GET /api/users/{id}/recipientawards
-        //[Route("/api/users/{id}/giverawards")]
-        //public ActionResult<IEnumerable<Award>> GetGiverAwards(int id)
-        //{
-        //    var award = _repository.Read().Where(a => a.GiverId == id).ToList();
-        //    if (award == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return award;
-        //}
-        //DELETE api/awards/{Id} 
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        //GET /api/users/{id}/recipientawards
+        [Route("/api/users/{id}/recipientawards")]
+        public ActionResult<IEnumerable<Award>> GetRecipientAwards(int id)
         {
-            var award = _repository.Read().FirstOrDefault(u => u.Id == id);
+            var award = _service.GetRecipientAwards(id);
             if (award == null)
             {
                 return NotFound();
             }
-            _repository.Delete(award);
-            return Ok();
+            return Ok(award);
+        }
+
+        //GET /api/users/{id}/recipientawards
+        [Route("/api/users/{id}/giverawards")]
+        public ActionResult<IEnumerable<Award>> GetGiverAwards(int id)
+        {
+            var award = _service.GetGiverAwards(id);
+            if (award == null)
+            {
+                return NotFound();
+            }
+            return Ok(award);
+        }
+        //DELETE api/awards/{Id} 
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            if (_service.Delete(id))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
     }

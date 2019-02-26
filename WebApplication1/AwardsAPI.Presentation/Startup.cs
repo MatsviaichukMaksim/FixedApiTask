@@ -35,10 +35,10 @@ namespace WebApplication1
             //services.AddScoped<IRepository<Award>, AwardRepository>();
             //services.AddScoped<IRepository<Comment>, CommentRepository>();
             //services.AddScoped<IRepository<Like>, LikeRepository>();
-            services.AddScoped<IRepository<User>, Repository<User>>();
-            services.AddScoped<IRepository<Award>, Repository<Award>>();
-            services.AddScoped<IRepository<Comment>, Repository<Comment>>();
-            services.AddScoped<IRepository<Like>, Repository<Like>>();
+            services.AddScoped<IRepository<UserData>, Repository<UserData>>();
+            services.AddScoped<IRepository<AwardData>, Repository<AwardData>>();
+            services.AddScoped<IRepository<CommentData>, Repository<CommentData>>();
+            services.AddScoped<IRepository<LikeData>, Repository<LikeData>>();
 
         }
 
