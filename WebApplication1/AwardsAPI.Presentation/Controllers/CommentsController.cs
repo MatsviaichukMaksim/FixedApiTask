@@ -60,6 +60,7 @@ namespace WebApplication1.Controllers
                 return BadRequest();
             }
         }
+        //GET api/awards/{id}/comments
         [Route("/api/awards/{id}/comments")]
         public ActionResult<IEnumerable<CommentData>> GetCommentsForAward(int id)
         {
