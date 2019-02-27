@@ -1,5 +1,5 @@
 ﻿using AwardsAPI.BusinessLogic.Interfaces;
-using ConsoleAppForDb.Models;
+using ConsoleAppForDb.ModelsNewData;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace WebApplication1.Controllers
 
         //POST api/likes
         [HttpPost]
-        public ActionResult Post([FromBody] Like like)
+        public ActionResult Post([FromBody] LikeData like)
         {
             if (like == null)
             {

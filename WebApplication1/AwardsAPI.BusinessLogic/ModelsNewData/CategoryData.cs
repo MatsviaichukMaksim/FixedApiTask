@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleAppForDb.Models
+namespace ConsoleAppForDb.ModelsNewData
 {
     public class CategoryData
     {

@@ -1,5 +1,6 @@
 ﻿using AwardsAPI.BusinessLogic.Interfaces;
 using ConsoleAppForDb.Models;
+using ConsoleAppForDb.ModelsNewData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,19 @@ namespace AwardsAPI.BusinessLogic.Services
         //{
 
         //}
-        protected IRepository<User> Repository;
-        protected UserService(IRepository<User> repository)
+        private IRepository<User> Repository;
+        public UserService(IRepository<User> repository)
         {
             Repository = repository;
         }
 
-        public void Create(User user)
+        public void Create(UserData userData)
         {
+            User user = new User();
+            user.FirstName = userData.FirstName;
+            user.LastName = userData.LastName;
+            user.Email = userData.Email;
+            user.Phone = userData.Phone;
             Repository.Create(user);
         }
 
@@ -55,7 +61,7 @@ namespace AwardsAPI.BusinessLogic.Services
             return Repository.Read().ToList();
         }
 
-        public bool Update(User userData,int id)
+        public bool Update(UserData userData,int id)
         {
             var user = Repository.Read().FirstOrDefault(u => u.Id == id);
             if (user != null)

@@ -1,5 +1,5 @@
 ﻿using AwardsAPI.BusinessLogic.Interfaces;
-using ConsoleAppForDb.Models;
+using ConsoleAppForDb.ModelsNewData;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,21 +23,21 @@ namespace WebApplication1.Controllers
 
         //POST api/comments
         [HttpPost]
-        public ActionResult Post([FromBody] Comment comment)
+        public ActionResult Post([FromBody] CommentData commentData)
         {
-            if (comment == null)
+            if (commentData == null)
             {
                 return BadRequest();
             }
-            _service.Create(comment);
+            _service.Create(commentData);
             return Ok();
         }
 
         // PUT api/comments/{Id} 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Comment comment)
+        public ActionResult Put(int id, [FromBody] CommentData commentData)
         {
-            if (_service.Update(comment, id))
+            if (_service.Update(commentData, id))
             {
                 return Ok();
             }
@@ -61,7 +61,7 @@ namespace WebApplication1.Controllers
             }
         }
         [Route("/api/awards/{id}/comments")]
-        public ActionResult<IEnumerable<Comment>> GetCommentsForAward(int id)
+        public ActionResult<IEnumerable<CommentData>> GetCommentsForAward(int id)
         {
             var comments = _service.GetCommentsForAward(id);
             if (comments == null)

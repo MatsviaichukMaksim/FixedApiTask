@@ -17,7 +17,7 @@ namespace ConsoleAppForDb.Models
         public Category Category { get; set; }
         //[ForeignKey("Id")]
         public User Giver { get; set; }
-       // [ForeignKey("Id")]
+        // [ForeignKey("Id")]
         public User Getter { get; set; }
     }
 }

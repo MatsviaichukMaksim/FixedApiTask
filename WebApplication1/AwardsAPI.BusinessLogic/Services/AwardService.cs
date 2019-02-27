@@ -1,5 +1,6 @@
 ﻿using AwardsAPI.BusinessLogic.Interfaces;
 using ConsoleAppForDb.Models;
+using ConsoleAppForDb.ModelsNewData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,21 @@ namespace AwardsAPI.BusinessLogic.Services
         //{
 
         //}
-        protected IRepository<Award> Repository;
-        protected AwardService(IRepository<Award> repository)
+        private IRepository<Award> Repository;
+        public AwardService(IRepository<Award> repository)
         {
             Repository = repository;
         }
 
-        public void Create(Award award)
+        public void Create(AwardData awardData)
         {
+            Award award = new Award();
+            award.GiverId = awardData.GiverId; 
+            award.GetterId = awardData.GetterId; 
+            award.Date = awardData.Date;
+            award.Points = awardData.Points;
+            award.CategoryId = awardData.CategoryId;
+            award.Title = awardData.Title;
             Repository.Create(award);
         }
 
@@ -56,7 +64,7 @@ namespace AwardsAPI.BusinessLogic.Services
             return Repository.Read().ToList();
         }
 
-        public bool Update(Award award, int id)
+        public bool Update(AwardData award, int id)
         {
             //do nothing
             return false;

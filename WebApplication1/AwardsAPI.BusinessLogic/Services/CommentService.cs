@@ -1,6 +1,7 @@
 ﻿using AwardsAPI.BusinessLogic.Interfaces;
 using ConsoleAppForDb;
 using ConsoleAppForDb.Models;
+using ConsoleAppForDb.ModelsNewData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,20 @@ namespace AwardsAPI.BusinessLogic.Services
         //{
 
         //}
-        protected IRepository<Comment> Repository;
+        private IRepository<Comment> Repository;
 
-        protected CommentService(IRepository<Comment> repository)
+        public CommentService(IRepository<Comment> repository)
         {
             Repository = repository;
         }
 
-        public void Create(Comment comment)
+        public void Create(CommentData commentData)
         {
+            Comment comment = new Comment();
+            comment.UserId = commentData.UserId;
+            comment.AwardId = commentData.AwardId;
+            comment.Text = commentData.Text;
+            comment.Date = commentData.Date;
             Repository.Create(comment);
         }
 
@@ -51,7 +57,7 @@ namespace AwardsAPI.BusinessLogic.Services
             return comment.ToList();
         }
 
-        public bool Update(Comment commentData, int id)
+        public bool Update(CommentData commentData, int id)
         {
             var comment = Repository.Read().FirstOrDefault(u => u.Id == id);
             if (comment != null)

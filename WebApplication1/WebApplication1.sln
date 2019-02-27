@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{9C530832-DEE8-47FC-91E5-779DFCF13707}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwardsAPI.DAL", "AwardsAPI.DAL\AwardsAPI.DAL.csproj", "{1EC742DA-1372-471C-9E9E-33884444EA97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwardsAPI.DAL", "AwardsAPI.DAL\AwardsAPI.DAL.csproj", "{1EC742DA-1372-471C-9E9E-33884444EA97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwardsAPI.Presentation", "AwardsAPI.Presentation\AwardsAPI.Presentation.csproj", "{C6419CD0-1F70-4723-B1B7-F0F635AD62D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwardsAPI.Presentation", "AwardsAPI.Presentation\AwardsAPI.Presentation.csproj", "{C6419CD0-1F70-4723-B1B7-F0F635AD62D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwardsAPI.BusinessLogic", "AwardsAPI.BusinessLogic\AwardsAPI.BusinessLogic.csproj", "{DBC8EEE7-5000-4A48-9103-54CEF299B7C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwardsAPI.BusinessLogic", "AwardsAPI.BusinessLogic\AwardsAPI.BusinessLogic.csproj", "{DBC8EEE7-5000-4A48-9103-54CEF299B7C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwardsAPI.Models", "AwardsAPI.Models\AwardsAPI.Models.csproj", "{B329AC0B-EB64-4BEE-9C62-96D0DA0409BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwardsAPI.Models", "AwardsAPI.Models\AwardsAPI.Models.csproj", "{B329AC0B-EB64-4BEE-9C62-96D0DA0409BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AwardsAPI.BusinessLogic.Interfaces;
+using AwardsAPI.BusinessLogic.Services;
 using ConsoleAppForDb;
 using ConsoleAppForDb.Models;
 using Microsoft.AspNetCore.Builder;
@@ -31,14 +33,14 @@ namespace WebApplication1
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<UserDbContext>();
-            //services.AddScoped<IRepository<User>,UserRepository>();
-            //services.AddScoped<IRepository<Award>, AwardRepository>();
-            //services.AddScoped<IRepository<Comment>, CommentRepository>();
-            //services.AddScoped<IRepository<Like>, LikeRepository>();
-            services.AddScoped<IRepository<UserData>, Repository<UserData>>();
-            services.AddScoped<IRepository<AwardData>, Repository<AwardData>>();
-            services.AddScoped<IRepository<CommentData>, Repository<CommentData>>();
-            services.AddScoped<IRepository<LikeData>, Repository<LikeData>>();
+            services.AddScoped<IRepository<User>, Repository<User>>();
+            services.AddScoped<IRepository<Award>, Repository<Award>>();
+            services.AddScoped<IRepository<Comment>, Repository<Comment>>();
+            services.AddScoped<IRepository<Like>, Repository<Like>>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAwardService, AwardService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<ILikeService, LikeService>();
 
         }
 

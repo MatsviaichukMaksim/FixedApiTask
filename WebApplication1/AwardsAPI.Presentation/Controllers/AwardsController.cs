@@ -1,5 +1,5 @@
 ﻿using AwardsAPI.BusinessLogic.Interfaces;
-using ConsoleAppForDb.Models;
+using ConsoleAppForDb.ModelsNewData;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace WebApplication1.Controllers
 
         //POST api/awards
         [HttpPost]
-        public ActionResult Post([FromBody] Award award)
+        public ActionResult Post([FromBody] AwardData award)
         {
             if (award == null)
             {
@@ -34,7 +34,7 @@ namespace WebApplication1.Controllers
         }
         //GET /api/users/{id}/recipientawards
         [Route("/api/users/{id}/recipientawards")]
-        public ActionResult<IEnumerable<Award>> GetRecipientAwards(int id)
+        public ActionResult<IEnumerable<AwardData>> GetRecipientAwards(int id)
         {
             var award = _service.GetRecipientAwards(id);
             if (award == null)
@@ -46,7 +46,7 @@ namespace WebApplication1.Controllers
 
         //GET /api/users/{id}/recipientawards
         [Route("/api/users/{id}/giverawards")]
-        public ActionResult<IEnumerable<Award>> GetGiverAwards(int id)
+        public ActionResult<IEnumerable<AwardData>> GetGiverAwards(int id)
         {
             var award = _service.GetGiverAwards(id);
             if (award == null)

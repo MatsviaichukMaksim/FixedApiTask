@@ -1,5 +1,5 @@
 ﻿using AwardsAPI.BusinessLogic.Interfaces;
-using ConsoleAppForDb.Models;
+using ConsoleAppForDb.ModelsNewData;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -28,18 +28,18 @@ namespace WebApplication1.Controllers
 
         //POST api/users
         [HttpPost]
-        public ActionResult Post([FromBody] User user)
+        public ActionResult Post([FromBody] UserData userData)
         {
-            if (user == null)
+            if (userData == null)
             {
                 return BadRequest();
             }
-            _service.Create(user);
+            _service.Create(userData);
             return Ok();
         }
         // PUT api/users/{Id} 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] User userData)
+        public ActionResult Put(int id, [FromBody] UserData userData)
         {
             //var user = _repository.Read().FirstOrDefault(u => u.Id == id); 
             //if (user == null)
@@ -64,14 +64,22 @@ namespace WebApplication1.Controllers
 
         //GET api/users
         [HttpGet]
-        public ActionResult<IEnumerable<User>> Get()
+        public ActionResult<IEnumerable<UserData>> Get()
         {
-             return _service.Read();
+             var users = _service.Read();
+            if (users != null)
+            {
+                return Ok(users);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         //GET api/users/{Id}/userbyid
         [HttpGet("{id}/userbyid")]
-        public ActionResult<User> GetById(int id)
+        public ActionResult<UserData> GetById(int id)
         {
             //var user = _repository.Read().FirstOrDefault(u => u.Id == id);
             //if (user == null)
@@ -88,7 +96,7 @@ namespace WebApplication1.Controllers
         }
         //GET api/users/{Email}/userbyemail
         [HttpGet("{Email}/userbyemail")]
-        public ActionResult<User> GetByEmail(string email)
+        public ActionResult<UserData> GetByEmail(string email)
         {
             var user = _service.GetByEmail(email);
             if (user == null)

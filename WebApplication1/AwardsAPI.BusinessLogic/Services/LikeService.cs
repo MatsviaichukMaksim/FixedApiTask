@@ -1,5 +1,6 @@
 ﻿using AwardsAPI.BusinessLogic.Interfaces;
 using ConsoleAppForDb.Models;
+using ConsoleAppForDb.ModelsNewData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,17 @@ namespace AwardsAPI.BusinessLogic.Services
         //{
 
         //}
-        protected IRepository<Like> Repository;
-        protected LikeService(IRepository<Like> repository)
+        private IRepository<Like> Repository;
+        public LikeService(IRepository<Like> repository)
         {
             Repository = repository;
         }
 
-        public void Create(Like like)
+        public void Create(LikeData likeData)
         {
+            Like like = new Like();
+            like.AwardId = likeData.AwardId;
+            like.UserId = likeData.UserId;
             Repository.Create(like);
         }
 
@@ -46,7 +50,7 @@ namespace AwardsAPI.BusinessLogic.Services
         }
 
 
-        public bool Update(Like item, int id)
+        public bool Update(LikeData item, int id)
         {
             //do nothing
             return false;
