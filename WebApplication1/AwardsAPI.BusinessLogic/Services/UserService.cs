@@ -44,21 +44,42 @@ namespace AwardsAPI.BusinessLogic.Services
                 return false;
             }
         }
-        public User GetByEmail(string email)
+        public UserData GetByEmail(string email)
         {
+            UserData userData = new UserData();
             var user = Repository.Read().FirstOrDefault(u => u.Email == email);
-            return user;
+            userData.FirstName = user.FirstName;
+            userData.LastName = user.LastName;
+            userData.Email = user.Email;
+            userData.Phone = user.Phone;
+            return userData;
         }
 
-        public User GetById(int id)
+        public UserData GetById(int id)
         {
+            UserData userData = new UserData();
             var user = Repository.Read().FirstOrDefault(u => u.Id == id);
-            return user;
+            userData.FirstName = user.FirstName;
+            userData.LastName = user.LastName;
+            userData.Email = user.Email;
+            userData.Phone = user.Phone;
+            return userData;
         }
 
-        public List<User> Read()
+        public List<UserData> Read()
         {
-            return Repository.Read().ToList();
+            List<UserData> userDataList = new List<UserData>();
+            var user = Repository.Read().ToList();
+            foreach (User userTemp in user)
+            {
+                UserData userData = new UserData();
+                userData.FirstName = userTemp.FirstName;
+                userData.LastName = userTemp.LastName;
+                userData.Email = userTemp.Email;
+                userData.Phone = userTemp.Phone;
+                userDataList.Add(userData);
+            }
+            return userDataList;
         }
 
         public bool Update(UserData userData,int id)

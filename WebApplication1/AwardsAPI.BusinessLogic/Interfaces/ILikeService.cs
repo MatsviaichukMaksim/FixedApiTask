@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AwardsAPI.BusinessLogic.Interfaces
 {
-    public interface ILikeService:IService<Like,LikeData>
+    public interface ILikeService:IService<LikeData>
     {
     }
 }

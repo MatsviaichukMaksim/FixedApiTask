@@ -47,21 +47,61 @@ namespace AwardsAPI.BusinessLogic.Services
             }
         }
 
-        public List<Award> GetGiverAwards(int id)
+        public List<AwardData> GetGiverAwards(int id)
         {
+            AwardData awardData = new AwardData();
+            List<AwardData> awardDataList = new List<AwardData>();
+            //AwardData awardData = new AwardData();
             var award = Repository.Read().Where(a => a.GiverId == id).ToList();
-            return award.ToList();
+            foreach (Award awardTemp in award)
+            {
+                awardData.GiverId = awardTemp.GiverId;
+                awardData.GetterId = awardTemp.GetterId;
+                awardData.Date = awardTemp.Date;
+                awardData.Points = awardTemp.Points;
+                awardData.CategoryId = awardTemp.CategoryId;
+                awardData.Title = awardTemp.Title;
+                awardDataList.Add(awardData);
+            }
+            //awardData = Mapper.MapList<Award, AwardData>(award);
+            return awardDataList;
         }
 
-        public List<Award> GetRecipientAwards(int id)
+        public List<AwardData> GetRecipientAwards(int id)
         {
+            AwardData awardData = new AwardData();
+            List<AwardData> awardDataList = new List<AwardData>();
             var award = Repository.Read().Where(a => a.GetterId == id).ToList();
-            return award.ToList();
+            foreach (Award awardTemp in award)
+            {
+                awardData.GiverId = awardTemp.GiverId;
+                awardData.GetterId = awardTemp.GetterId;
+                awardData.Date = awardTemp.Date;
+                awardData.Points = awardTemp.Points;
+                awardData.CategoryId = awardTemp.CategoryId;
+                awardData.Title = awardTemp.Title;
+                awardDataList.Add(awardData);
+            }
+            //awardData = Mapper.MapList<Award, AwardData>(award);
+            return awardDataList;
         }
 
-        public List<Award> Read()
+        public List<AwardData> Read()
         {
-            return Repository.Read().ToList();
+            List<AwardData> awardDataList = new List<AwardData>();
+            var award =  Repository.Read().ToList();
+            foreach (Award awardTemp in award)
+            {
+                AwardData awardData = new AwardData();
+                awardData.GiverId = awardTemp.GiverId;
+                awardData.GetterId = awardTemp.GetterId;
+                awardData.Date = awardTemp.Date;
+                awardData.Points = awardTemp.Points;
+                awardData.CategoryId = awardTemp.CategoryId;
+                awardData.Title = awardTemp.Title;
+                awardDataList.Add(awardData);
+            }
+            return awardDataList;
         }
 
         public bool Update(AwardData award, int id)

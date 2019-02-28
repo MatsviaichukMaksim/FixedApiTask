@@ -6,10 +6,10 @@ using WebApplication1.Interfaces;
 
 namespace AwardsAPI.BusinessLogic.Interfaces
 {
-    public interface IService<T,V> /*: IRepository<T>*/ where T:class
+    public interface IService<V> /*: IRepository<T>*/ where V:class
     {
         void Create(V item);
-        List<T> Read();
+        List<V> Read();
         bool Update(V item,int id);
         bool Delete(int id);
     }

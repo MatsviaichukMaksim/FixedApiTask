@@ -8,9 +8,9 @@ using WebApplication1.Interfaces;
 
 namespace AwardsAPI.BusinessLogic.Interfaces
 {
-    public interface IAwardService : IService<Award,AwardData>
+    public interface IAwardService : IService<AwardData>
     {
-        List<Award> GetGiverAwards(int id);
-        List<Award> GetRecipientAwards(int id);
+        List<AwardData> GetGiverAwards(int id);
+        List<AwardData> GetRecipientAwards(int id);
     }
 }

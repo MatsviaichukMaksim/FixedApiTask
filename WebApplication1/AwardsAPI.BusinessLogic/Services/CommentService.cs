@@ -46,15 +46,36 @@ namespace AwardsAPI.BusinessLogic.Services
                 return false;
             }
         }
-        public List<Comment> Read()
+        public List<CommentData> Read()
         {
-            return Repository.Read().ToList();
+            List<CommentData> commentDataList = new List<CommentData>();
+            var comment = Repository.Read().ToList();
+            foreach (Comment commentTemp in comment)
+            {
+                CommentData commentData = new CommentData();
+                commentData.UserId = commentTemp.UserId;
+                commentData.AwardId = commentTemp.AwardId;
+                commentData.Date = commentTemp.Date;
+                commentData.Text = commentTemp.Text;
+                commentDataList.Add(commentData);
+            }
+            return commentDataList;
         }
 
-        public List<Comment> GetCommentsForAward(int id)
+        public List<CommentData> GetCommentsForAward(int id)
         {
+            CommentData commentData = new CommentData();
+            List<CommentData> commentDataList = new List<CommentData>();
             var comment = Repository.Read().Where(a => a.AwardId == id).ToList();
-            return comment.ToList();
+            foreach (Comment commentTemp in comment)
+            {
+                commentData.UserId = commentTemp.UserId;
+                commentData.AwardId = commentTemp.AwardId;
+                commentData.Date = commentTemp.Date;
+                commentData.Text = commentTemp.Text;
+                commentDataList.Add(commentData);
+            }
+            return commentDataList;
         }
 
         public bool Update(CommentData commentData, int id)

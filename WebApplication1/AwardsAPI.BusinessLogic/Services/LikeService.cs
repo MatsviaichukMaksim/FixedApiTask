@@ -44,9 +44,18 @@ namespace AwardsAPI.BusinessLogic.Services
             }
         }
 
-        public List<Like> Read()
+        public List<LikeData> Read()
         {
-            return Repository.Read().ToList();
+            List<LikeData> likeDataList = new List<LikeData>();
+            var like = Repository.Read().ToList();
+            foreach (Like likeTemp in like)
+            {
+                LikeData likeData = new LikeData();
+                likeData.AwardId = likeTemp.AwardId;
+                likeData.UserId = likeTemp.UserId;
+                likeDataList.Add(likeData);
+            }
+            return likeDataList;
         }
 
 

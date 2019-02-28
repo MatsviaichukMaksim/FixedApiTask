@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace AwardsAPI.BusinessLogic.Interfaces
 {
-    public interface IUserService: IService<User,UserData>
+    public interface IUserService: IService<UserData>
     {
-        User GetById(int id);
-        User GetByEmail(string email);
+        UserData GetById(int id);
+        UserData GetByEmail(string email);
     }
 }
