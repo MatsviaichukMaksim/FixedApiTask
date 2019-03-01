@@ -3,9 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <ApplicationIcon />
-    <OutputType>Exe</OutputType>
-    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AwardsAPI.BusinessLogic\AwardsAPI.BusinessLogic.csproj" />
+    <ProjectReference Include="..\AwardsAPI.BusinessLogicc\AwardsAPI.BusinessLogicc.csproj" />
   </ItemGroup>
 
 </Project>
