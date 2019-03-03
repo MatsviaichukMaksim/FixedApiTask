@@ -29,14 +29,22 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            _service.Create(like);
+            bool likeCreate = _service.Create(like);
+            if (likeCreate)
+            {
             return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         //DELETE api/likes/{Id} 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            if (_service.Delete(id))
+            bool likeDelete = _service.Delete(id);
+            if (likeDelete)
             {
                 return Ok();
             }

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AwardsAPI.BusinessLogic\AwardsAPI.BusinessLogic.csproj" />
+    <ProjectReference Include="..\AwardsAPI.BusinessLogiccc\AwardsAPI.BusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>

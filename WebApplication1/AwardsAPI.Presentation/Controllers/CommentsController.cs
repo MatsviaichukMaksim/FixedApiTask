@@ -29,15 +29,23 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            _service.Create(commentData);
+            bool commentCreate = _service.Create(commentData);
+            if (commentCreate)
+            {
             return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // PUT api/comments/{Id} 
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] CommentData commentData)
         {
-            if (_service.Update(commentData, id))
+            bool commentUpdate = _service.Update(commentData, id);
+            if (commentUpdate)
             {
                 return Ok();
             }
@@ -51,7 +59,8 @@ namespace WebApplication1.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            if (_service.Delete(id))
+            bool commentDelete =_service.Delete(id) ;
+            if (commentDelete)
             {
                 return Ok();
             }
@@ -69,7 +78,7 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            return Ok(comments);
+            return comments;
         }
     }
 }

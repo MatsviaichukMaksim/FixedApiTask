@@ -49,8 +49,8 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Award, AwardData>().ReverseMap());
-            //Mapper.Initialize(cfg => cfg.CreateMap<User, UserData>().ReverseMap());
+            Mapper.Initialize(cfg => cfg.CreateMap<User, UserData>().ReverseMap());
+            //Mapper.Initialize(afg => afg.CreateMap<AwardData, Award>());//.ReverseMap());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

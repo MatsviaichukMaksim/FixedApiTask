@@ -15,11 +15,6 @@ namespace WebApplication1.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _service;
-        //public UsersController()
-        //{
-        //    _repository = new UserRepository();
-        //    repository = new Repository<User>();
-        //}
 
         public UsersController(IUserService service)
         {
@@ -34,25 +29,22 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            _service.Create(userData);
+            bool userCreate =_service.Create(userData);
+            if (userCreate)
+            {
             return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         // PUT api/users/{Id} 
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] UserData userData)
         {
-            //var user = _repository.Read().FirstOrDefault(u => u.Id == id); 
-            //if (user == null)
-            //{
-            //    return NotFound();
-            //}
-            //user.FirstName = userData.FirstName;
-            //user.LastName = userData.LastName;
-            //user.Email = userData.Email;
-            //user.Phone = userData.Phone;
-            //_repository.Update(user);
-            //return Ok();
-            if (_service.Update(userData, id))
+            bool userUpdate = _service.Update(userData, id);
+            if (userUpdate)
             {
                 return Ok();
             }
@@ -66,14 +58,14 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<UserData>> Get()
         {
-             var users = _service.Read();
-            if (users != null)
+            var users = _service.Read();
+            if (users == null)
             {
-                return Ok(users);
+                return NotFound();
             }
             else
             {
-                return NotFound();
+                return users;
             }
         }
 
@@ -81,18 +73,15 @@ namespace WebApplication1.Controllers
         [HttpGet("byid/{id}")]
         public ActionResult<UserData> GetById(int id)
         {
-            //var user = _repository.Read().FirstOrDefault(u => u.Id == id);
-            //if (user == null)
-            //{
-            //    return NotFound();
-            //}
-            //return user;
             var user = _service.GetById(id);
             if (user == null)
             {
                 return NotFound();
             }
-            return Ok(user);
+            else
+            {
+                return user;
+            }
         }
         //GET api/users/{Email}/userbyemail
         [HttpGet("byemail/{Email}")]
@@ -103,20 +92,18 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            return Ok(user);
+            else
+            {
+            return user;
+            }
+            
         }
         //DELETE api/users/{Id} 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id) 
         {
-            //var user = _repository.Read().FirstOrDefault(u => u.Id == id);
-            //if (user==null)
-            //{
-            //    return NotFound();
-            //}
-            //_repository.Delete(user);
-            //return Ok();
-            if (_service.Delete(id))
+            bool userDelete = _service.Delete(id);
+            if (userDelete)
             {
                 return Ok();
             }

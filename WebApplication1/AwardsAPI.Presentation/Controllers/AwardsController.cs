@@ -29,8 +29,15 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-            _service.Create(award);
-            return Ok();
+            bool awardCreate = _service.Create(award);
+            if (awardCreate)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         //GET /api/users/{id}/recipientawards
         [Route("/api/users/recipientawards/{id}")]
@@ -41,7 +48,7 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            return Ok(award);
+            return award;
         }
 
         //GET /api/users/{id}/recipientawards
@@ -53,13 +60,14 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            return Ok(award);
+            return award;
         }
         //DELETE api/awards/{Id} 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            if (_service.Delete(id))
+            bool awardDelete = _service.Delete(id);
+            if (awardDelete)
             {
                 return Ok();
             }

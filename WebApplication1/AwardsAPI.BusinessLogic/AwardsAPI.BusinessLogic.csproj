@@ -14,9 +14,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AwardsAPI.DAL\AwardsAPI.DAL.csproj" />
-    <ProjectReference Include="..\AwardsAPI.Models\AwardsAPI.Models.csproj" />
-  </ItemGroup>
-
 </Project>
