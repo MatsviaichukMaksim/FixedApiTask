@@ -29,7 +29,15 @@ namespace AwardsAPI.BusinessLogic.Services
             if (award != null)
             {
                 Repository.Create(award);
-                return true;
+                bool created = Repository.SaveChanges();
+                if (created)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
@@ -43,7 +51,15 @@ namespace AwardsAPI.BusinessLogic.Services
             if (award != null)
             {
                 Repository.Delete(award);
-                return true;
+                bool deleted = Repository.SaveChanges();
+                if (deleted)
+                {
+                    return true;
+                }
+                else
+                {
+                    return true;//?
+                }
             }
             else
             {

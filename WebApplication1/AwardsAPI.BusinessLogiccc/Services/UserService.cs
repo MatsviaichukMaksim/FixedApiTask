@@ -29,7 +29,15 @@ namespace AwardsAPI.BusinessLogic.Services
             if (user != null)
             {
                 Repository.Create(user);
-                return true;
+                bool created = Repository.SaveChanges();
+                if (created)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
@@ -44,7 +52,15 @@ namespace AwardsAPI.BusinessLogic.Services
             if (user != null)
             {
                 Repository.Delete(user);
+                bool deleted = Repository.SaveChanges();
+                if (deleted)
+                {
                 return true;
+                }
+                else
+                {
+                    return true;//?
+                }
             }
             else
             {
@@ -95,7 +111,15 @@ namespace AwardsAPI.BusinessLogic.Services
             {
                 user = MappUserDataToUser(userData,user);
                 Repository.Update(user);
-                return true;
+                bool updated = Repository.SaveChanges();
+                if (updated)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {

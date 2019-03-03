@@ -10,6 +10,7 @@ namespace WebApplication1.Interfaces
         void Create(T item);
         IQueryable<T> Read();
         void Update(T item);
-        void Delete(T item); 
+        void Delete(T item);
+        bool SaveChanges();
     }
 }

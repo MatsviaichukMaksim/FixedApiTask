@@ -20,7 +20,7 @@ namespace WebApplication1.Repositories
         public void Create(T item)
         {
             _userDbContext.Set<T>().Add(item);
-            _userDbContext.SaveChanges();
+            //_userDbContext.SaveChanges();
         }
 
         public IQueryable<T> Read()
@@ -31,12 +31,16 @@ namespace WebApplication1.Repositories
         public void Update(T item)
         {
             _userDbContext.Entry(item).State = EntityState.Modified;
-            _userDbContext.SaveChanges();
+            //_userDbContext.SaveChanges();
         }
         public void Delete(T item)
         {
             _userDbContext.Set<T>().Remove(item);
-            _userDbContext.SaveChanges();
+            //_userDbContext.SaveChanges();
+        }
+        public bool SaveChanges()
+        {
+            return _userDbContext.SaveChanges() > 0;
         }
     }
 }

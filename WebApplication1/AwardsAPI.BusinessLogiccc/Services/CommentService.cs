@@ -31,7 +31,15 @@ namespace AwardsAPI.BusinessLogic.Services
             if (comment != null)
             {
                 Repository.Create(comment);
-                return true;
+                bool created = Repository.SaveChanges();
+                if (created)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
@@ -45,7 +53,15 @@ namespace AwardsAPI.BusinessLogic.Services
             if (comment != null)
             {
                 Repository.Delete(comment);
-                return true;
+                bool deleted = Repository.SaveChanges();
+                if (deleted)
+                {
+                    return true;
+                }
+                else
+                {
+                    return true;//?
+                }
             }
             else
             {
@@ -91,7 +107,15 @@ namespace AwardsAPI.BusinessLogic.Services
             {
                 comment = MappCommentDataToComment(commentData, comment);
                 Repository.Update(comment);
-                return true;
+                bool updated = Repository.SaveChanges();
+                if (updated)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
