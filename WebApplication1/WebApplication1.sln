@@ -3,15 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwardsAPI.Presentation", "AwardsAPI.Presentation\AwardsAPI.Presentation.csproj", "{C6419CD0-1F70-4723-B1B7-F0F635AD62D2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwardsAPI.Models", "AwardsAPI.Modelsss\AwardsAPI.Models.csproj", "{EB544065-86DD-40D7-941B-62FC49540426}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwardsAPI.DAL", "AwardsAPI.DALLL\AwardsAPI.DAL.csproj", "{C54DC2C4-935D-4DA9-B409-DC3ED01B019A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwardsAPI.BusinessLogic", "AwardsAPI.BusinessLogiccc\AwardsAPI.BusinessLogic.csproj", "{9E9DAB29-514F-4023-8F11-0EB268281124}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwardsAPI.BusinessLogic.Tests", "AwardsAPI.Services.Tests\AwardsAPI.BusinessLogic.Tests.csproj", "{FF247CCB-1B5B-44D8-9A42-8917904ED7F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{9C530832-DEE8-47FC-91E5-779DFCF13707}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,26 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C6419CD0-1F70-4723-B1B7-F0F635AD62D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6419CD0-1F70-4723-B1B7-F0F635AD62D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6419CD0-1F70-4723-B1B7-F0F635AD62D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6419CD0-1F70-4723-B1B7-F0F635AD62D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB544065-86DD-40D7-941B-62FC49540426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB544065-86DD-40D7-941B-62FC49540426}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB544065-86DD-40D7-941B-62FC49540426}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB544065-86DD-40D7-941B-62FC49540426}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C54DC2C4-935D-4DA9-B409-DC3ED01B019A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C54DC2C4-935D-4DA9-B409-DC3ED01B019A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C54DC2C4-935D-4DA9-B409-DC3ED01B019A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C54DC2C4-935D-4DA9-B409-DC3ED01B019A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E9DAB29-514F-4023-8F11-0EB268281124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E9DAB29-514F-4023-8F11-0EB268281124}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E9DAB29-514F-4023-8F11-0EB268281124}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E9DAB29-514F-4023-8F11-0EB268281124}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF247CCB-1B5B-44D8-9A42-8917904ED7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF247CCB-1B5B-44D8-9A42-8917904ED7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF247CCB-1B5B-44D8-9A42-8917904ED7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF247CCB-1B5B-44D8-9A42-8917904ED7F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C530832-DEE8-47FC-91E5-779DFCF13707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C530832-DEE8-47FC-91E5-779DFCF13707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C530832-DEE8-47FC-91E5-779DFCF13707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C530832-DEE8-47FC-91E5-779DFCF13707}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
